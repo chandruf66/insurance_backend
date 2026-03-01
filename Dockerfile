@@ -1,20 +1,9 @@
-# Use official Node image
 FROM node:20-alpine
-
-# Set working directory
 WORKDIR /app
-
-# Copy package.json first
 COPY package*.json ./
-
-# Install dependencies
-RUN npm install
-
-# Copy rest of code
+# Install only production dependencies to save RAM on your 1GB VM
+RUN npm install --only=production
 COPY . .
-
-# Expose backend port
 EXPOSE 5000
-
-# Start server
-CMD ["node", "server.js"]
+# Ensure your server.js uses process.env.PORT or 5000
+CMD ["node", "server.js"] 
