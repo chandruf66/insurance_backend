@@ -18,7 +18,7 @@ app.use(cors());
 app.use(express.json());
 
 // ✅ Health check route
-app.get('/api//health', (req, res) => {
+app.get('/health', (req, res) => {
   res.json({ status: 'OK', message: 'CORS is working!' });
 });
 
